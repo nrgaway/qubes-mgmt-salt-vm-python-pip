@@ -4,4 +4,4 @@
 vm:
   vm:
     - match: nodegroup
-    - python_pip
+    - python-pip

@@ -11,12 +11,12 @@
 ##
 
 $python: |
-    from salt://python_pip/map.sls import PipMap
+    from salt://python-pip/map.sls import PipMap
 
     pip_dependencies = PipMap.python_pip + \
-                       PipMap.python_dev + \
-                       PipMap.python_virtualenv + \
-                       PipMap.build_essential
+                         PipMap.python_dev + \
+                         PipMap.python_virtualenv + \
+                         PipMap.build_essential
 
 $with pip-dependencies:
   pkg.installed:
