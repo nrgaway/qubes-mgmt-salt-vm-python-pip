@@ -56,7 +56,7 @@ qubesctl top.enable %{state_name} saltenv=%{saltenv} -l quiet --out quiet > /dev
 /srv/formulas/vm/python-pip-formula/LICENSE
 /srv/formulas/vm/python-pip-formula/python-pip/init.sls
 /srv/formulas/vm/python-pip-formula/python-pip/init.top
-/srv/formulas/vm/python-pip-formula/python-pip/map.sls
+/srv/formulas/vm/python-pip-formula/python-pip/map.yaml
 /srv/formulas/vm/python-pip-formula/README.rst
 
 %changelog

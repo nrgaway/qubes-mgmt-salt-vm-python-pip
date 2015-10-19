@@ -1,4 +1,3 @@
-#!yamlscript
 # -*- coding: utf-8 -*-
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
@@ -7,20 +6,17 @@
 # ==========
 #
 # Execute:
-#   qubesctl state.sls python-pip
+#   qubesctl state.sls python-pip vm
 ##
 
-$python: |
-    from salt://python-pip/map.sls import PipMap
+{%- from 'python-pip/map.yaml' import settings with context %}
+{%- set pip_dependencies = [settings.python_pip] + [settings.python_dev] + [settings.python_virtualenv] + settings.build_essential %}
 
-    pip_dependencies = PipMap.python_pip + \
-                         PipMap.python_dev + \
-                         PipMap.python_virtualenv + \
-                         PipMap.build_essential
-
-$with pip-dependencies:
+python-pip:
   pkg.installed:
-    - names: $pip_dependencies
+    - names: {{ pip_dependencies }}
 
-  virtualenvwrapper:
-    pip.installed
+virtualenvwrapper:
+  pip.installed:
+    - require:
+      - pkg: python-pip
