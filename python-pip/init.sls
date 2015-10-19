@@ -9,8 +9,8 @@
 #   qubesctl state.sls python-pip vm
 ##
 
-{%- from 'python-pip/map.yaml' import settings with context -%}
-{%- set pip_dependencies = [settings.python_pip] + [settings.python_dev] + [settings.python_virtualenv] + settings.build_essential -%}
+{%- from 'python-pip/map.yaml' import settings with context %}
+{%- set pip_dependencies = [settings.python_pip] + [settings.python_dev] + [settings.python_virtualenv] + settings.build_essential %}
 
 python-pip:
   pkg.installed:
