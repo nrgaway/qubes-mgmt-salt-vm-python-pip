@@ -1,0 +1,56 @@
+# -*- coding: utf-8 -*-
+# vim: set syntax=yaml ts=2 sw=2 sts=2 et :
+
+{% macro settings_map(settings) -%}
+  {% if settings.pillar is defined %}
+    {% set map = salt['grains.filter_by'](
+      settings
+      , grain=settings.get('grain', 'os_family')
+      , merge=salt['pillar.get'](settings.pillar))
+    %}
+  {% else %}
+    {% set map = salt['grains.filter_by'](
+      settings
+      , grain=settings.get('grain', 'os_family'))
+    %}
+  {% endif %}
+  {% do settings.default.update(map) %}
+  {{ settings.default }}
+{%- endmacro %}
+
+{%- load_yaml as defaults %}
+grain: os_family
+
+pillar: python-pip:lookup
+
+default:
+  python_pip: python-pip
+  python_virtualenv: python-virtualenv
+
+Debian:
+  python_dev: python-dev
+  build_essential: build-essential
+
+Ubuntu:
+  python_dev: python-dev
+  build_essential: build-essential
+
+RedHat:
+  python_dev: python-devel
+  build_essential:
+    - make
+    - automake
+    - gcc
+    - gcc-c++
+    - kernel-devel
+
+Fedora:  {}
+Arch:    {}
+CentOS:  {}
+Amazon:  {}
+Suse:    {}
+Gentoo:  {}
+FreeBSD: {}
+{%- endload %}
+
+{% set settings = settings_map(defaults)|load_yaml %}
