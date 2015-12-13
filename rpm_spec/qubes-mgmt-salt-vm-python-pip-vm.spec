@@ -1,19 +1,9 @@
-%{!?version: %define version %(make get-version)}
-%{!?rel: %define rel %(make get-release)}
-%{!?package_name: %define package_name %(make get-package_name)}
-%{!?package_summary: %define package_summary %(make get-summary)}
-%{!?package_description: %define package_description %(make get-description)}
+%{!?version: %define version %(cat version)}
 
-%{!?formula_name: %define formula_name %(make get-formula_name)}
-%{!?state_name: %define state_name %(make get-state_name)}
-%{!?saltenv: %define saltenv %(make get-saltenv)}
-%{!?pillar_dir: %define pillar_dir %(make get-pillar_dir)}
-%{!?formula_dir: %define formula_dir %(make get-formula_dir)}
-
-Name:      %{package_name}
+Name:      qubes-mgmt-salt-vm-python-pip
 Version:   %{version}
-Release:   %{rel}%{?dist}
-Summary:   %{package_summary}
+Release:   1%{?dist}
+Summary:   Installs python-pip package
 License:   GPL 2.0
 URL:	   http://www.qubes-os.org/
 
@@ -26,7 +16,7 @@ Requires:  python-pip
 %define _builddir %(pwd)
 
 %description
-%{package_description}
+Installs python-pip package
 
 %prep
 # we operate on the current directory, so no need to unpack anything
@@ -47,7 +37,7 @@ qubesctl saltutil.clear_cache -l quiet --out quiet > /dev/null || true
 qubesctl saltutil.sync_all refresh=true -l quiet --out quiet > /dev/null || true
 
 # Enable States
-qubesctl top.enable %{state_name} saltenv=%{saltenv} -l quiet --out quiet > /dev/null || true
+qubesctl top.enable python-pip saltenv=vm -l quiet --out quiet > /dev/null || true
 
 %files
 %defattr(-,root,root)
