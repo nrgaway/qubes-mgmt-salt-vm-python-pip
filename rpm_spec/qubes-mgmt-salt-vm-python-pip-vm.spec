@@ -51,6 +51,7 @@ qubesctl top.enable %{state_name} saltenv=%{saltenv} -l quiet --out quiet > /dev
 
 %files
 %defattr(-,root,root)
+%doc LICENSE README.rst
 %attr(750, root, root) %dir /srv/formulas/vm/python-pip-formula
 
 /srv/formulas/vm/python-pip-formula/LICENSE

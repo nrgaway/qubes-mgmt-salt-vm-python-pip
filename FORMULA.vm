@@ -1,16 +1,13 @@
 # vim: set syntax=yaml ts=2 sw=2 sts=2 et :
 
 package-name:       qubes-mgmt-salt-vm-python-pip
-name:               python-pip-formula
-top_level_dir:      python-pip
-formula-files:      README.rst LICENSE python-pip
-pillar-files:       
-test-formula-files: 
-test-pillar-files: 
-formula_root:       /srv/formulas
 saltenv:            vm
 version:            3.0.0
 release:            1
+name:               python-pip-formula
+top_level_dir:      python-pip
+formula-files:      README.rst LICENSE python-pip
+formula_dir:        $(MGMT_DEFAULT_FORMULA_DIR)/$(MGMT_SALTENV)/$(MGMT_NAME)
 os:                 RedHat, Debian, Ubuntu, Suse, FreeBSD
 os_family:          RedHat, Debian, Suse, FreeBSD
 summary:            Installs python-pip package
