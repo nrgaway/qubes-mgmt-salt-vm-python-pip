@@ -29,11 +29,13 @@ default:
 
 Debian:
   python_dev: python-dev
-  build_essential: build-essential
+  build_essential:
+    - build-essential
 
 Ubuntu:
   python_dev: python-dev
-  build_essential: build-essential
+  build_essential:
+   - build-essential
 
 RedHat:
   python_dev: python-devel
